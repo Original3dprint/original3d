@@ -81,13 +81,13 @@
       color: #ff6ec4;
     }
     #contador {
-      font-size: 2000px;
+      font-size: 80px;
       font-weight: bold;
       animation: zoom 1s infinite;
     }
     @keyframes zoom {
-      1000%, 5000% { transform: scale(5); }
-      2500% { transform: scale(2); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
     }
   </style>
 </head>
@@ -99,10 +99,9 @@
   </audio>
 
   <div id="inicio" class="pantalla visible">
-    <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
+    <h1>¿Niño o Niña? 👶</h1>
     <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
-    <img src="familia.jpeg" alt="Imagen de bebé">
-    <br>
+    <img src="imagen-inicial.jpg" alt="Imagen de bebé">
     <button onclick="iniciarJuego()">Comenzar</button>
   </div>
 
@@ -216,6 +215,7 @@
     function revelarGenero() {
       document.getElementById('revelacion').classList.add('visible');
       const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
+      const imagen = esNina ? "nina.jpg" : "nino.jpg";
       document.getElementById('mensajeGenero').textContent = mensaje;
       document.getElementById('imagenGenero').src = imagen;
       lanzarConfeti();
