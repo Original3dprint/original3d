@@ -86,8 +86,8 @@
       animation: zoom 1s infinite;
     }
     @keyframes zoom {
-      0%, 100% { transform: scale(5); }
-      50% { transform: scale(1); }
+      0%, 100% { transform: scale(15); }
+      50% { transform: scale(10); }
     }
   </style>
 </head>
@@ -101,7 +101,7 @@
   <div id="inicio" class="pantalla visible">
     <h1>¿Niño o Niña? 👶</h1>
     <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
-    <img src="imagen-inicial.jpg" alt="Imagen de bebé">
+    <img src="familia.jpeg" alt="Imagen de bebé">
     <button onclick="iniciarJuego()">Comenzar</button>
   </div>
 
@@ -215,7 +215,6 @@
     function revelarGenero() {
       document.getElementById('revelacion').classList.add('visible');
       const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
-      const imagen = esNina ? "nina.jpg" : "nino.jpg";
       document.getElementById('mensajeGenero').textContent = mensaje;
       document.getElementById('imagenGenero').src = imagen;
       lanzarConfeti();
