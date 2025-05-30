@@ -216,7 +216,6 @@
     function revelarGenero() {
       document.getElementById('revelacion').classList.add('visible');
       const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
-      const imagen = esNina ? "nina.jpg" : "nino.jpg";
       document.getElementById('mensajeGenero').textContent = mensaje;
       document.getElementById('imagenGenero').src = imagen;
       lanzarConfeti();
@@ -230,7 +229,7 @@
         confeti.style.backgroundColor = Math.random() < 0.5 ? '#ff6ec4' : '#7873f5';
         confeti.style.animationDuration = 2 + Math.random() * 3 + 's';
         document.body.appendChild(confeti);
-        setTimeout(() => confeti.remove(), 1000);
+        setTimeout(() => confeti.remove(), 5000);
       }
     }
   </script>
