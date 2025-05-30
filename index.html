@@ -113,7 +113,6 @@
 
   <div id="final" class="pantalla">
     <h2>!Ahora sí... Descubramos!</h2>
-    <img src="imagen-final.jpg" alt="Gracias">
     <button onclick="iniciarCuentaRegresiva()">Descubrir</button>
   </div>
 
@@ -123,19 +122,18 @@
 
   <div id="revelacion" class="pantalla">
     <div class="revelacion" id="mensajeGenero"></div>
-    <img id="imagenGenero" src="" alt="Género revelado">
-    <div class="revelacion" style="margin-top: 20px; font-size: 40px;">¡Felicidades, familia Original3D!</div>
+    <div class="revelacion" style="margin-top: 20px; font-size: 60px;">¡Felicidades, familia Lopera Llano!</div>
   </div>
 
   <script>
     const preguntas = [
       {
-        texto: "¿Cuál es el color favorito de Rafa? 🍫🍉",
+        texto: "¿Cuál es el color favorito de Rafa? ",
         opciones: ["Amarillo", "Azul", "Rosado", "Rojo"],
         correcta: 2
       },
       {
-        texto: "¿Cuál es el animal favorito de JuanJo? 🤰",
+        texto: "¿Cuál es el animal favorito de JuanJo? ",
         opciones: ["Conejo", "Dinosaurio", "Tortuga", "Tiburón"],
         correcta: 3
       },
@@ -152,7 +150,7 @@
     ];
 
     let indice = 0;
-    let esNina = Math.random() < 0.5;
+    let esNina = false;
 
     function iniciarJuego() {
       document.getElementById("audio").play();
