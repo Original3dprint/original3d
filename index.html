@@ -37,7 +37,7 @@
       font-size: 30px;
       border-radius: 30px;
       cursor: pointer;
-      margin-top: 20px;
+      margin: 10px;
       transition: transform 0.3s ease;
     }
     button:hover {
@@ -66,6 +66,10 @@
       border-radius: 20px;
       margin-top: 20px;
     }
+    #contador {
+      font-size: 60px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -76,23 +80,23 @@
   </audio>
 
   <div id="inicio" class="pantalla visible">
-    <h1>Una nueva persona llegará a integrar esta bella familia 👶</h1>
-    <p>¡Acompáñanos en esta aventura para descubrirlo!</p>
-    <img src="familia.jpeg" alt="Familia">
+    <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
+    <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
+    <img src="imagen-inicial.jpg" alt="Imagen de bebé">
+    <br>
     <button onclick="mostrarPregunta(0)">Comenzar</button>
   </div>
 
   <div id="pregunta" class="pantalla">
     <h2 id="preguntaTexto"></h2>
-    <button onclick="responder(true)">Rojo</button>
-    <button onclick="responder(false)">Azul</button>
-    <button onclick="responder(false)">Verde</button>
-    <button onclick="responder(false)">Amarillo</button>
+    <div id="opciones"></div>
   </div>
 
   <div id="final" class="pantalla">
     <h2>¡Gracias por participar!</h2>
-    <button onclick="revelarGenero()">Descubre el Género</button>
+    <img src="imagen-final.jpg" alt="Gracias">
+    <button onclick="iniciarCuentaRegresiva()">Descubre el Género</button>
+    <div id="contador"></div>
   </div>
 
   <div id="revelacion" class="pantalla">
@@ -101,9 +105,31 @@
 
   <script>
     const preguntas = [
-      "¿Cuál es el color favorito de Rafa? ",
-      "¿Cómo ves la forma de la pancita? ",
-      "¿Será tranquilo o travieso? "
+      {
+        texto: "¿Qué crees que antoja más la mamá? 🍫🍉",
+        opciones: ["Dulces", "Frutas", "Cosas saladas", "Nada en especial"],
+        correcta: 0
+      },
+      {
+        texto: "¿Cómo ves la forma de la pancita? 🤰",
+        opciones: ["Redonda", "Puntiaguda", "Muy baja", "Muy alta"],
+        correcta: 1
+      },
+      {
+        texto: "¿Será tranquilo o travieso? 😇😈",
+        opciones: ["Tranquilo", "Travieso", "Ambos", "No sabemos"],
+        correcta: 2
+      },
+      {
+        texto: "¿Qué color predomina en los regalos? 🎁",
+        opciones: ["Rosa", "Azul", "Amarillo", "Verde"],
+        correcta: 1
+      },
+      {
+        texto: "¿Quién cree que será niña? 🙋‍♀️",
+        opciones: ["Mamá", "Papá", "Abuela", "Hermano"],
+        correcta: 0
+      }
     ];
 
     let indice = 0;
@@ -111,7 +137,20 @@
     function mostrarPregunta(i) {
       document.getElementById('inicio').classList.remove('visible');
       document.getElementById('pregunta').classList.add('visible');
-      document.getElementById('preguntaTexto').textContent = preguntas[i];
+      cargarPregunta(i);
+    }
+
+    function cargarPregunta(i) {
+      const p = preguntas[i];
+      document.getElementById('preguntaTexto').textContent = p.texto;
+      const opcionesDiv = document.getElementById('opciones');
+      opcionesDiv.innerHTML = '';
+      p.opciones.forEach((opcion, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = opcion;
+        btn.onclick = () => responder(idx === p.correcta);
+        opcionesDiv.appendChild(btn);
+      });
     }
 
     function responder(esCorrecto) {
@@ -121,11 +160,24 @@
       }
       indice++;
       if (indice < preguntas.length) {
-        document.getElementById('preguntaTexto').textContent = preguntas[indice];
+        cargarPregunta(indice);
       } else {
         document.getElementById('pregunta').classList.remove('visible');
         document.getElementById('final').classList.add('visible');
       }
+    }
+
+    function iniciarCuentaRegresiva() {
+      let contador = 10;
+      document.getElementById('contador').textContent = contador;
+      const intervalo = setInterval(() => {
+        contador--;
+        document.getElementById('contador').textContent = contador;
+        if (contador === 0) {
+          clearInterval(intervalo);
+          revelarGenero();
+        }
+      }, 1000);
     }
 
     function revelarGenero() {
@@ -144,7 +196,6 @@
         confeti.style.backgroundColor = Math.random() < 0.5 ? '#ff6ec4' : '#7873f5';
         confeti.style.animationDuration = 2 + Math.random() * 3 + 's';
         document.body.appendChild(confeti);
-
         setTimeout(() => confeti.remove(), 5000);
       }
     }
