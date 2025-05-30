@@ -20,16 +20,18 @@
       color: #333;
       font-size: 40px;
       position: relative;
-
     }
+
     .pantalla {
       display: none;
       text-align: center;
       padding: 20px;
     }
+
     .visible {
       display: block;
     }
+
     button {
       background: #ff6ec4;
       background: linear-gradient(to right, #7873f5, #ff6ec4);
@@ -42,14 +44,17 @@
       margin: 10px;
       transition: transform 0.3s ease;
     }
+
     button:hover {
       transform: scale(1.1);
     }
+
     .revelacion {
       font-size: 60px;
       font-weight: bold;
       margin-top: 30px;
     }
+
     .confeti {
       position: absolute;
       width: 10px;
@@ -59,16 +64,19 @@
       animation: caer 4s linear infinite;
       z-index: 2000;
     }
+
     @keyframes caer {
       to {
         transform: translateY(100vh) rotate(360deg);
       }
     }
+
     img {
       max-width: 80%;
       border-radius: 20px;
       margin-top: 20px;
     }
+
     #pantallaCuenta {
       display: none;
       align-items: center;
@@ -83,11 +91,13 @@
       font-size: 70px;
       color: #000000;
     }
+
     #contador {
       font-size: 80px;
       font-weight: bold;
       animation: zoom 1s infinite;
     }
+
     @keyframes zoom {
       0%, 100% { transform: scale(15); }
       50% { transform: scale(10); }
@@ -115,7 +125,7 @@
   </div>
 
   <div id="final" class="pantalla">
-    <h2>!Ahora sí... Descubramos!</h2>
+    <h2>¡Ahora sí... Descubramos!</h2>
     <button onclick="iniciarCuentaRegresiva()">Descubrir</button>
   </div>
 
@@ -125,6 +135,7 @@
 
   <div id="revelacion" class="pantalla">
     <div class="revelacion" id="mensajeGenero"></div>
+    <img id="imagenGenero" src="" alt="Imagen del género" style="max-width: 300px;">
     <div class="revelacion" style="margin-top: 20px; font-size: 60px;">¡Felicidades, familia Lopera Llano!</div>
   </div>
 
@@ -147,13 +158,13 @@
       },
       {
         texto: "¿Quién es más perezoso?",
-        opciones: ["Pipie", "Maria", "JuanJo", "Rafa"],
+        opciones: ["Pipe", "Maria", "JuanJo", "Rafa"],
         correcta: 1
       },
     ];
 
-    let indice = false;
-    let esNina = false;
+    let indice = 0;
+    let esNina = true; // Cambia esto a false si es niño
 
     function iniciarJuego() {
       document.getElementById("audio").play();
@@ -209,7 +220,15 @@
       }, 1500);
     }
 
-        function lanzarConfeti() {
+    function revelarGenero() {
+      document.getElementById('revelacion').classList.add('visible');
+      const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
+      document.getElementById('mensajeGenero').textContent = mensaje;
+      document.getElementById('imagenGenero').src = esNina ? "nina.png" : "nino.png";
+      lanzarConfeti();
+    }
+
+    function lanzarConfeti() {
       for (let i = 0; i < 100; i++) {
         const confeti = document.createElement('div');
         confeti.classList.add('confeti');
