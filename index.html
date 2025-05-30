@@ -66,15 +66,25 @@
       border-radius: 20px;
       margin-top: 20px;
     }
-    #contador {
-      font-size: 60px;
-      margin-top: 20px;
+    #pantallaCuenta {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.9);
+      z-index: 1000;
+      font-size: 120px;
+      color: #ff6ec4;
     }
   </style>
 </head>
 <body>
 
-  <audio id="musica" loop>
+  <audio id="audio" loop>
     <source src="musica.mp3" type="audio/mpeg">
     Tu navegador no soporta el elemento de audio.
   </audio>
@@ -82,9 +92,8 @@
   <div id="inicio" class="pantalla visible">
     <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
     <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
-    <img src="familia.jpeg" alt="Imagen de bebé">
-    <br>
-    <button onclick="iniciarJuego()">¡Vamos!</button>
+    <img src="imagen-inicial.jpg" alt="Imagen de bebé">
+    <button onclick="iniciarJuego()">Comenzar</button>
   </div>
 
   <div id="pregunta" class="pantalla">
@@ -94,20 +103,24 @@
 
   <div id="final" class="pantalla">
     <h2>¡Gracias por participar!</h2>
-    <img src="imagen-final.jpg" alt="Gracias">
+    <img src="familia.jpeg" alt="Gracias">
     <button onclick="iniciarCuentaRegresiva()">Descubre el Género</button>
+  </div>
+
+  <div id="pantallaCuenta">
     <div id="contador"></div>
   </div>
 
   <div id="revelacion" class="pantalla">
     <div class="revelacion" id="mensajeGenero"></div>
+    <img id="imagenGenero" src="" alt="Género revelado">
   </div>
 
   <script>
     const preguntas = [
       {
-        texto: "¿Qué crees que antoja más la mamá? 🍫🍉",
-        opciones: ["Dulces", "Frutas", "Cosas saladas", "Nada en especial"],
+        texto: "¿Cuál es el color favorito de Rafa?",
+        opciones: ["Negro", "Azul", "Rosado", "Verde"],
         correcta: 0
       },
       {
@@ -133,9 +146,10 @@
     ];
 
     let indice = 0;
+    let esNina = Math.random() < 0.5;
 
     function iniciarJuego() {
-      document.getElementById('musica').play();
+      document.getElementById("audio").play();
       mostrarPregunta(0);
     }
 
@@ -174,22 +188,26 @@
 
     function iniciarCuentaRegresiva() {
       let contador = 10;
+      document.getElementById('final').classList.remove('visible');
+      document.getElementById('pantallaCuenta').style.display = 'flex';
       document.getElementById('contador').textContent = contador;
       const intervalo = setInterval(() => {
         contador--;
         document.getElementById('contador').textContent = contador;
         if (contador === 0) {
           clearInterval(intervalo);
+          document.getElementById('pantallaCuenta').style.display = 'none';
           revelarGenero();
         }
       }, 1000);
     }
 
     function revelarGenero() {
-      document.getElementById('final').classList.remove('visible');
       document.getElementById('revelacion').classList.add('visible');
-      const genero = Math.random() < 0.5 ? "💙 ¡Es un NIÑO! 💙" : "💖 ¡Es una NIÑA! 💖";
-      document.getElementById('mensajeGenero').textContent = genero;
+      const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
+      const imagen = esNina ? "nina.jpg" : "nino.jpg";
+      document.getElementById('mensajeGenero').textContent = mensaje;
+      document.getElementById('imagenGenero').src = imagen;
       lanzarConfeti();
     }
 
