@@ -61,24 +61,36 @@
         transform: translateY(100vh) rotate(360deg);
       }
     }
+    img {
+      max-width: 80%;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
   <div id="inicio" class="pantalla visible">
-    <h1>Una nueva persona integrará esta bella familia 👶 / 👶</h1>
-    <p>¡Acompáñanos en esta aventura para descubrirlo!</p>
+    <h1>¿Niño o Niña? 👶</h1>
+    <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
+    <img src="imagen-inicial.jpg" alt="Imagen de bebé">
     <button onclick="mostrarPregunta(0)">Comenzar</button>
   </div>
 
   <div id="pregunta" class="pantalla">
     <h2 id="preguntaTexto"></h2>
-    <button onclick="responder()">Opción 1</button>
-    <button onclick="responder()">Opción 2</button>
+    <button onclick="responder(true)">Opción correcta</button>
+    <button onclick="responder(false)">Opción incorrecta</button>
   </div>
 
   <div id="final" class="pantalla">
     <h2>¡Gracias por participar!</h2>
+    <img src="rafa.jpeg" alt="Gracias">
     <button onclick="revelarGenero()">Descubre el Género</button>
   </div>
 
@@ -101,7 +113,11 @@
       document.getElementById('preguntaTexto').textContent = preguntas[i];
     }
 
-    function responder() {
+    function responder(esCorrecto) {
+      if (!esCorrecto) {
+        alert("¡Ups! Intenta de nuevo. 🤭");
+        return;
+      }
       indice++;
       if (indice < preguntas.length) {
         document.getElementById('preguntaTexto').textContent = preguntas[indice];
