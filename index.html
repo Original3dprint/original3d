@@ -86,8 +86,8 @@
       animation: zoom 1s infinite;
     }
     @keyframes zoom {
-      0%, 100% { transform: scale(10); }
-      50% { transform: scale(5); }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
     }
   </style>
 </head>
@@ -99,9 +99,10 @@
   </audio>
 
   <div id="inicio" class="pantalla visible">
-    <h1>¿Niño o Niña? 👶</h1>
+    <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
     <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
-    <img src="familia.jpeg" alt="Imagen de bebé">
+    <img src="familia.jpg" alt="Imagen de bebé">
+    <br>
     <button onclick="iniciarJuego()">Comenzar</button>
   </div>
 
@@ -111,9 +112,9 @@
   </div>
 
   <div id="final" class="pantalla">
-    <h2>¡Gracias por participar!</h2>
+    <h2>!Ahora sí... Descubramos!</h2>
     <img src="imagen-final.jpg" alt="Gracias">
-    <button onclick="iniciarCuentaRegresiva()">Descubre el Género</button>
+    <button onclick="iniciarCuentaRegresiva()">Descubrir</button>
   </div>
 
   <div id="pantallaCuenta">
@@ -129,30 +130,25 @@
   <script>
     const preguntas = [
       {
-        texto: "¿Qué crees que antoja más la mamá? 🍫🍉",
-        opciones: ["Dulces", "Frutas", "Cosas saladas", "Nada en especial"],
-        correcta: 0
-      },
-      {
-        texto: "¿Cómo ves la forma de la pancita? 🤰",
-        opciones: ["Redonda", "Puntiaguda", "Muy baja", "Muy alta"],
-        correcta: 1
-      },
-      {
-        texto: "¿Será tranquilo o travieso? 😇😈",
-        opciones: ["Tranquilo", "Travieso", "Ambos", "No sabemos"],
+        texto: "¿Cuál es el color favorito de Rafa? 🍫🍉",
+        opciones: ["Amarillo", "Azul", "Rosado", "Rojo"],
         correcta: 2
       },
       {
-        texto: "¿Qué color predomina en los regalos? 🎁",
-        opciones: ["Rosa", "Azul", "Amarillo", "Verde"],
-        correcta: 1
+        texto: "¿Cuál es el animal favorito de JuanJo? 🤰",
+        opciones: ["Conejo", "Dinosaurio", "Tortuga", "Tiburón"],
+        correcta: 3
       },
       {
-        texto: "¿Quién cree que será niña? 🙋‍♀️",
-        opciones: ["Mamá", "Papá", "Abuela", "Hermano"],
+        texto: "¿Quién es más chistoso?",
+        opciones: ["JuanJo", "Pipe", "Maria", "Rafa"],
         correcta: 0
-      }
+      },
+      {
+        texto: "¿Quién es más perezoso?",
+        opciones: ["Pipie", "Maria", "JuanJo", "Rafa"],
+        correcta: 1
+      },
     ];
 
     let indice = 0;
