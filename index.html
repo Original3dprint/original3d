@@ -93,6 +93,7 @@
     <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
     <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
     <img src="familia.jpeg" alt="Imagen de bebé">
+    <br>
     <button onclick="iniciarJuego()">Comenzar</button>
   </div>
 
@@ -102,9 +103,9 @@
   </div>
 
   <div id="final" class="pantalla">
-    <h2>¡Gracias por participar!</h2>
-    <img src="familia.jpeg" alt="Gracias">
-    <button onclick="iniciarCuentaRegresiva()">Descubre el Género</button>
+    <h2>¡Ahora si, descubramos!</h2>
+    <img src="imagen-final.jpg" alt="Gracias">
+    <button onclick="iniciarCuentaRegresiva()">Descubrir</button>
   </div>
 
   <div id="pantallaCuenta">
@@ -114,18 +115,19 @@
   <div id="revelacion" class="pantalla">
     <div class="revelacion" id="mensajeGenero"></div>
     <img id="imagenGenero" src="" alt="Género revelado">
+    <div class="revelacion" style="margin-top: 20px; font-size: 40px;">¡Felicidades, familia Original3D!</div>
   </div>
 
   <script>
     const preguntas = [
       {
-        texto: "¿Cuál es el color favorito de Rafa?",
-        opciones: ["Negro", "Azul", "Rosado", "Verde"],
-        correcta: 2
+        texto: "¿Qué crees que antoja más la mamá? 🍫🍉",
+        opciones: ["Dulces", "Frutas", "Cosas saladas", "Nada en especial"],
+        correcta: 0
       },
       {
-        texto: "¿Quién es más chistoso? 🤰",
-        opciones: ["Rafa", "Pipe", "Maria", "JuanJo"],
+        texto: "¿Cómo ves la forma de la pancita? 🤰",
+        opciones: ["Redonda", "Puntiaguda", "Muy baja", "Muy alta"],
         correcta: 1
       },
       {
