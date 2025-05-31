@@ -136,7 +136,7 @@
 
   <div id="revelacion" class="pantalla">
     <div class="revelacion" id="mensajeGenero"></div>
-    <img id="" src="ecografia.jpeg" alt="ecografia" style="max-width: 300px;">
+    <img src="ecografia.jpeg" alt="ecografia" style="max-width: 300px;">
     <div class="revelacion" style="margin-top: 20px; font-size: 60px;">¡Felicidades, familia Lopera Llano!</div>
   </div>
 
@@ -225,7 +225,7 @@
       document.getElementById('revelacion').classList.add('visible');
       const mensaje = esNina ? "💖 ¡Es una NIÑA! 💖" : "💙 ¡Es un NIÑO! 💙";
       document.getElementById('mensajeGenero').textContent = mensaje;
-      document.getElementById('imagenGenero').src = esNina ? "nina.png" : "nino.png";
+      document.getElementById('imagenGenero').src = esNina ? "ecografia.jpeg" : "ecografia.jpeg";
       lanzarConfeti();
     }
 
