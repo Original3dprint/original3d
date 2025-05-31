@@ -113,12 +113,15 @@
   </audio>
 
   <div id="inicio" class="pantalla visible">
-    <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
-    <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
-    <img src="familia.jpeg" alt="Imagen de la familia">
-    <br>
-    <button onclick="iniciarJuego()">Comenzar</button>
-  </div>
+  <h1>Una nueva persona llegará a integrar esta bella familia👶</h1>
+  <p>¡Acompáñanos en esta dulce aventura para descubrirlo!</p>
+  <video id="videoIntro" autoplay muted loop playsinline style="max-width: 90%; border-radius: 20px; margin-top: 20px;">
+    <source src="ecografia.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+  </video>
+  <br>
+  <button onclick="iniciarJuego()">Comenzar</button>
+</div>
 
   <div id="pregunta" class="pantalla">
     <h2 id="preguntaTexto"></h2>
